@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { BriefingTextEditorComponent } from "../BriefingTextEditor/BriefingTextEditor.component";
+import { BriefingEntry } from '../../../model/BriefingEntry';
 
 @Component({
   selector: 'briefing-entry-editor',
@@ -7,4 +8,6 @@ import { BriefingTextEditorComponent } from "../BriefingTextEditor/BriefingTextE
   styleUrls: ['./BriefingEntryEditor.component.css'],
   imports: [BriefingTextEditorComponent]
 })
-export class BriefingEntryEditorComponent {}
+export class BriefingEntryEditorComponent {
+  entry = input.required<BriefingEntry>();
+}

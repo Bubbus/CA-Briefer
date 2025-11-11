@@ -1,4 +1,4 @@
 <div class="h-full flex bg-neutral-600">
   <briefing-section-list-editor [sections]="model.sections" class="w-60 min-w-40 m-6"/>
-  <briefing-section-editor class="flex-grow"/>
+  <briefing-section-editor [section]="model.sections[0]" class="flex-grow"/>
 </div>
