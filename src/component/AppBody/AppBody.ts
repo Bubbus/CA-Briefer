@@ -1,10 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { BriefingSectionEditorComponent } from "../BriefingSectionEditor/BriefingSectionEditor.component";
-import { BriefingTextEditorComponent } from "../BriefingTextEditor/BriefingTextEditor.component";
+import { BriefingEditorComponent } from "../Briefing/BriefingEditor/BriefingEditor.component";
 
 @Component({
   selector: 'app-body',
-  imports: [BriefingSectionEditorComponent, BriefingTextEditorComponent],
+  imports: [BriefingEditorComponent],
   templateUrl: './AppBody.html',
   styleUrl: './AppBody.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
