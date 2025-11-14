@@ -11,5 +11,5 @@ import { BriefingSection } from '../../../model/BriefingSection';
 })
 export class BriefingSectionEditorComponent {
   
-  section = input.required<BriefingSection>();
+  section = input.required<BriefingSection | null>();
 }
