@@ -1,0 +1,12 @@
+<div class="bg-neutral-400 py-6 flex-col">
+  @for (item of items(); track getIdentifier(item)) {
+    <div>
+      <button 
+        class="w-full flex px-3"
+        [class.bg-neutral-300]="getIdentifier(item) === getIdentifier(selectedItem)"
+        (click)="buttonClicked($event, item)">
+        <span class="align-left">{{getDisplayText(item)}}</span>
+      </button>      
+    </div>
+  }
+</div>

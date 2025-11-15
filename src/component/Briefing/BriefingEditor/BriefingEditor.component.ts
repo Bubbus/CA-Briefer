@@ -16,11 +16,13 @@ export class BriefingEditorComponent {
     this.model = CreateBriefingModelFixture();
     this.selectedSection = null;
   }
+  
+  model: BriefingModel;
+  selectedSection: BriefingSection | null;
+  
 
   sectionSelected(section: BriefingSection) {
     this.selectedSection = section;
   }
 
-  model: BriefingModel;
-  selectedSection: BriefingSection | null;
 }

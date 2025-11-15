@@ -1,4 +1,12 @@
 <div class="h-full flex bg-neutral-600">
-  <briefing-section-list-editor [sections]="model.sections" (selectedItem)="sectionSelected($event)" class="w-60 min-w-40 m-6"/>
-  <briefing-section-editor [section]="selectedSection" class="flex-grow"/>
+  <briefing-section-list-editor 
+    [items]="model.sections" 
+    (selectedItemEvent)="sectionSelected($event)" 
+    class="w-60 min-w-40 m-6"/>
+    
+  @if (selectedSection !== null) {
+    <briefing-section-editor 
+      [section]="selectedSection" 
+      class="flex-grow"/>
+  }
 </div>

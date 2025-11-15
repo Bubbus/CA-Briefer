@@ -1,16 +1,24 @@
-import { Component, input, output } from '@angular/core';
+import { Component } from '@angular/core';
+import { BriefingListEditorComponent } from '../BriefingListEditor{TItem,TIdentifier}/BriefingListEditor.component';
 import { BriefingSection } from '../../../model/BriefingSection';
 
 @Component({
   selector: 'briefing-section-list-editor',
-  templateUrl: './BriefingSectionListEditor.component.html',
+  templateUrl: '../BriefingListEditor{TItem,TIdentifier}/BriefingListEditor.component.html',
   styleUrls: ['./BriefingSectionListEditor.component.css']
 })
-export class BriefingSectionListEditorComponent {
-  sections = input.required<BriefingSection[]>();
-  selectedItem = output<BriefingSection>();
+export class BriefingSectionListEditorComponent extends BriefingListEditorComponent<BriefingSection, number> {
 
-  buttonClicked(event:Event, section:BriefingSection) {
-    this.selectedItem.emit(section);
+  constructor() {
+    super();
   };
+
+  override getIdentifier(item: BriefingSection | null): number {
+    return item?.id ?? -1;
+  };
+
+  override getDisplayText(item: BriefingSection): string {
+    return item.name;
+  };
+
 }

@@ -1,9 +1,10 @@
 <div class="bg-neutral-500 flex">
-  @if (section() === null) {
-    <!-- Intentionally empty -->
+  <briefing-entry-list-editor 
+    [items]="section().entries" 
+    (selectedItemEvent)="entrySelected($event)" 
+    class="w-80 min-w-50 m-6" />
+
+  @if (selectedEntry !== null) {
+    <briefing-entry-editor [entry]="selectedEntry" class="flex-grow m-6" />
   }
-  @else {
-    <briefing-entry-list-editor [entries]="section()!.entries" class="w-80 min-w-50 m-6" />
-    <briefing-entry-editor [entry]="section()!.entries[0]" class="flex-grow m-6" />
-  }  
 </div>

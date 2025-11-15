@@ -1,9 +1,0 @@
-<div class="bg-neutral-400 py-6 flex-col">
-  @for (section of sections(); track $index) {
-    <div>
-      <button class="bg-neutral-500 w-full flex px-3" (click)="buttonClicked($event, section)">
-        <span class="align-left">{{section.name}}</span>
-      </button>      
-    </div>
-  }
-</div>
