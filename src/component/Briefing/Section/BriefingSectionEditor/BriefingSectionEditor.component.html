@@ -1,7 +1,8 @@
 <div class="bg-neutral-500 flex">
   <briefing-entry-list-editor 
-    [items]="sectionService.section.entries" 
-    (selectedItemEvent)="entrySelected($event)" 
+    [items]="sectionService.section().entries" 
+    (selectedItemEvent)="entrySelected($event)"
+    (addNewItemEvent)="addNewEntry()"
     class="w-80 min-w-50 m-6" />
 
   @if (selectedEntryService() !== null) {

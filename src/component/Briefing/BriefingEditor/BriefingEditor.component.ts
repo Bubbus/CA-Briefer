@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
-import { BriefingSectionEditorComponent } from "../BriefingSectionEditor/BriefingSectionEditor.component";
-import { BriefingSectionListEditorComponent } from "../BriefingSectionListEditor/BriefingSectionListEditor.component";
+import { BriefingSectionEditorComponent } from "../Section/BriefingSectionEditor/BriefingSectionEditor.component";
+import { BriefingSectionListEditorComponent } from "../Section/BriefingSectionListEditor/BriefingSectionListEditor.component";
 import { BriefingModelService } from '../../../service/BriefingModel.service';
 import { BriefingSectionService } from '../../../service/BriefingSection.service';
 
@@ -25,6 +25,14 @@ export class BriefingEditorComponent {
   sectionSelected(sectionId: number) {
     this.selectedSectionId = sectionId;
     this.selectedSectionService = this.modelService.getSectionService(sectionId);
+  }
+
+  addNewSection() {
+    this.modelService.addSection();
+  }
+
+  printModel() {
+    console.log(this.modelService.model());
   }
 
 }

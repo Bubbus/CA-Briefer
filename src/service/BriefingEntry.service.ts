@@ -1,3 +1,4 @@
+import { model, signal, WritableSignal } from "@angular/core";
 import { BriefingEntry } from "../model/BriefingEntry";
 
 // import { Injectable } from '@angular/core';
@@ -7,14 +8,16 @@ import { BriefingEntry } from "../model/BriefingEntry";
 // })
 export class BriefingEntryService {
 
-  public entry: BriefingEntry;
+  private _entry: BriefingEntry;
+  public entry: WritableSignal<BriefingEntry>;
 
   constructor(entry: BriefingEntry) { 
-    this.entry = entry;
+    this._entry = entry;
+    this.entry = signal<BriefingEntry>(entry);
   }
 
   setEntryContent(content: string) {
-    this.entry.content = content
+    this._entry.content = content
   }
 
 }

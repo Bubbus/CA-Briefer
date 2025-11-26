@@ -1,6 +1,6 @@
 import { Component, input } from '@angular/core';
-import { BriefingTextEditorComponent } from "../BriefingTextEditor/BriefingTextEditor.component";
-import { BriefingEntryService } from '../../../service/BriefingEntry.service';
+import { BriefingTextEditorComponent } from "../../BriefingTextEditor/BriefingTextEditor.component";
+import { BriefingEntryService } from '../../../../service/BriefingEntry.service';
 
 @Component({
   selector: 'briefing-entry-editor',

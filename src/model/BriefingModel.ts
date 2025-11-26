@@ -1,6 +1,7 @@
 import { BriefingEntry } from "./BriefingEntry";
 import { BriefingSection } from "./BriefingSection";
 import { BriefingSide } from "./BriefingSide.enum";
+import { GetModelIdentitySingleton } from "./ModelIdentitySingleton";
 
 export class BriefingModel {
     
@@ -33,6 +34,10 @@ export function CreateBriefingModelFixture() {
         new BriefingSection(1, "Mission", missionEntries),
         new BriefingSection(2, "Intel", intelEntries)
     ]
+
+    var modelIds = GetModelIdentitySingleton();
+    modelIds.setIdForType(BriefingEntry.name, 4);
+    modelIds.setIdForType(BriefingSection.name, 2);
 
     return new BriefingModel(sections);
     

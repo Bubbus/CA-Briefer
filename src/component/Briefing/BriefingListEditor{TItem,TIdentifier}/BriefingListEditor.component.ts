@@ -14,6 +14,7 @@ export abstract class BriefingListEditorComponent<TItem, TIdentifier> {
   items = input.required<TItem[]>();
   selectedItemId: TIdentifier | null;
   selectedItemEvent = output<TIdentifier>();
+  addNewItemEvent = output();
 
   buttonClicked(event:Event, item:TItem) {
     this.selectedItemId = this.getIdentifier(item);
@@ -22,5 +23,9 @@ export abstract class BriefingListEditorComponent<TItem, TIdentifier> {
 
   abstract getIdentifier(item: TItem | null): TIdentifier;
   abstract getDisplayText(item: TItem): string;
+
+  public addButtonClicked($event: PointerEvent) {
+    this.addNewItemEvent.emit();
+  }
 
 }

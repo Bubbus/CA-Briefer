@@ -1,2 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 @import "tailwindcss";
+
+@layer components {
+    .briefer-button {
+        background-color: var(--color-neutral-400);
+        border-radius: var(--radius-sm);
+        box-shadow: var(--shadow-md);
+        border-width: 1px;
+        border-color: var(--color-neutral-300);
+        justify-content: center;
+    }
+}

@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, Input, model } from '@angular/core';
-import { BriefingEntryListEditorComponent } from "../BriefingEntryListEditor/BriefingEntryListEditor.component";
-import { BriefingEntryEditorComponent } from "../BriefingEntryEditor/BriefingEntryEditor.component";
-import { BriefingSectionService } from '../../../service/BriefingSection.service';
-import { BriefingEntryService } from '../../../service/BriefingEntry.service';
+import { BriefingEntryListEditorComponent } from "../../Entry/BriefingEntryListEditor/BriefingEntryListEditor.component";
+import { BriefingEntryEditorComponent } from "../../Entry/BriefingEntryEditor/BriefingEntryEditor.component";
+import { BriefingSectionService } from '../../../../service/BriefingSection.service';
+import { BriefingEntryService } from '../../../../service/BriefingEntry.service';
 
 @Component({
   selector: 'briefing-section-editor',
@@ -31,5 +31,9 @@ export class BriefingSectionEditorComponent {
     var entryService = this.sectionService.getEntryService(id);
     this.selectedEntryService.set(entryService);
   } 
+
+  addNewEntry() {
+    this._sectionService.addEntry();
+  }
   
 }

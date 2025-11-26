@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { BriefingListEditorComponent } from '../BriefingListEditor{TItem,TIdentifier}/BriefingListEditor.component';
-import { BriefingSection } from '../../../model/BriefingSection';
+import { BriefingListEditorComponent } from '../../BriefingListEditor{TItem,TIdentifier}/BriefingListEditor.component';
+import { BriefingSection } from '../../../../model/BriefingSection';
 
 @Component({
   selector: 'briefing-section-list-editor',
-  templateUrl: '../BriefingListEditor{TItem,TIdentifier}/BriefingListEditor.component.html',
+  templateUrl: '../../BriefingListEditor{TItem,TIdentifier}/BriefingListEditor.component.html',
   styleUrls: ['./BriefingSectionListEditor.component.css']
 })
 export class BriefingSectionListEditorComponent extends BriefingListEditorComponent<BriefingSection, number> {

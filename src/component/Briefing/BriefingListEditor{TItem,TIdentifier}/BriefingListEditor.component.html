@@ -1,4 +1,4 @@
-<div class="bg-neutral-400 py-6 flex-col">
+<div class="bg-neutral-400 pt-6 pb-3 flex-col">
   @for (item of items(); track getIdentifier(item)) {
     <div>
       <button 
@@ -9,4 +9,11 @@
       </button>      
     </div>
   }
+  <div class="grid">
+    <button 
+      class="px-3 mt-3 mx-3 briefer-button"
+      (click)="addButtonClicked($event)">
+      <span>+</span>
+    </button>      
+  </div>
 </div>

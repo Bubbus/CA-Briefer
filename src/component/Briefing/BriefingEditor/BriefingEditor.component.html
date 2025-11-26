@@ -1,12 +1,16 @@
-<div class="h-full flex bg-neutral-600">
-  <briefing-section-list-editor 
-    [items]="modelService.model.sections" 
-    (selectedItemEvent)="sectionSelected($event)" 
-    class="w-60 min-w-40 m-6"/>
-    
-  @if (selectedSectionService !== null) {
-    <briefing-section-editor 
-      [sectionService]="selectedSectionService" 
-      class="flex-grow"/>
-  }
+<div class="h-full bg-neutral-600">
+  <div class="flex">
+    <briefing-section-list-editor 
+      [items]="modelService.model().sections" 
+      (selectedItemEvent)="sectionSelected($event)" 
+      (addNewItemEvent)="addNewSection()"
+      class="w-60 min-w-40 m-6"/>
+      
+    @if (selectedSectionService !== null) {
+      <briefing-section-editor 
+        [sectionService]="selectedSectionService" 
+        class="flex-grow"/>
+    }
+  </div>
+  <button (click)="printModel()">print model</button>
 </div>
