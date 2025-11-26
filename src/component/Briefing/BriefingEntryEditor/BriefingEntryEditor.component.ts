@@ -1,6 +1,6 @@
 import { Component, input } from '@angular/core';
 import { BriefingTextEditorComponent } from "../BriefingTextEditor/BriefingTextEditor.component";
-import { BriefingEntry } from '../../../model/BriefingEntry';
+import { BriefingEntryService } from '../../../service/BriefingEntry.service';
 
 @Component({
   selector: 'briefing-entry-editor',
@@ -9,5 +9,11 @@ import { BriefingEntry } from '../../../model/BriefingEntry';
   imports: [BriefingTextEditorComponent]
 })
 export class BriefingEntryEditorComponent {
-  entry = input.required<BriefingEntry>();
+
+  entryService = input.required<BriefingEntryService>();
+
+  onTextChanged(newText: string) {
+    this.entryService().setEntryContent(newText);
+  }
+  
 }

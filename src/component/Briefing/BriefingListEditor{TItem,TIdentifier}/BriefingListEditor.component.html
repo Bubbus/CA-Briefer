@@ -3,7 +3,7 @@
     <div>
       <button 
         class="w-full flex px-3"
-        [class.bg-neutral-300]="getIdentifier(item) === getIdentifier(selectedItem)"
+        [class.bg-neutral-300]="getIdentifier(item) === selectedItemId"
         (click)="buttonClicked($event, item)">
         <span class="align-left">{{getDisplayText(item)}}</span>
       </button>      

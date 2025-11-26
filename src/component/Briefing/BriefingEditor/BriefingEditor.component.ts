@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { BriefingSectionEditorComponent } from "../BriefingSectionEditor/BriefingSectionEditor.component";
 import { BriefingSectionListEditorComponent } from "../BriefingSectionListEditor/BriefingSectionListEditor.component";
-import { BriefingModel, CreateBriefingModelFixture } from '../../../model/BriefingModel';
-import { BriefingSection } from '../../../model/BriefingSection';
+import { BriefingModelService } from '../../../service/BriefingModel.service';
+import { BriefingSectionService } from '../../../service/BriefingSection.service';
 
 @Component({
   selector: 'briefing-editor',
@@ -13,16 +13,18 @@ import { BriefingSection } from '../../../model/BriefingSection';
 export class BriefingEditorComponent {
 
   constructor() {
-    this.model = CreateBriefingModelFixture();
-    this.selectedSection = null;
+    this.modelService = inject(BriefingModelService);
+    this.selectedSectionId = null;
+    this.selectedSectionService = null;
   }
   
-  model: BriefingModel;
-  selectedSection: BriefingSection | null;
-  
+  modelService: BriefingModelService;
+  selectedSectionId: number | null;
+  selectedSectionService: BriefingSectionService | null;
 
-  sectionSelected(section: BriefingSection) {
-    this.selectedSection = section;
+  sectionSelected(sectionId: number) {
+    this.selectedSectionId = sectionId;
+    this.selectedSectionService = this.modelService.getSectionService(sectionId);
   }
 
 }

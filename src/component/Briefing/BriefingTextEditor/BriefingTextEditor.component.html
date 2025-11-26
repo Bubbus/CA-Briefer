@@ -1,3 +1,3 @@
 <div class="bg-neutral-400 p-6">
-  {{text()}}
+  <textarea #textEditor (change)="onChange(textEditor.value)" [value]="text()"></textarea>
 </div>

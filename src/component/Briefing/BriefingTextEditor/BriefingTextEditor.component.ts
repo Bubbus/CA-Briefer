@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 
 @Component({
   selector: 'briefing-text-editor',
@@ -6,5 +6,11 @@ import { Component, input } from '@angular/core';
   styleUrls: ['./BriefingTextEditor.component.css']
 })
 export class BriefingTextEditorComponent {
+
   text = input.required<string>();
+  onTextChanged = output<string>();
+
+  onChange(newText: string) {
+    this.onTextChanged.emit(newText);
+  }
 }

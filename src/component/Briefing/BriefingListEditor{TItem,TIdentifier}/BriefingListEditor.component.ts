@@ -1,5 +1,4 @@
 import { Component, input, output } from '@angular/core';
-import { BriefingSection } from '../../../model/BriefingSection';
 
 @Component({
   selector: 'briefing-list-editor',
@@ -9,16 +8,16 @@ import { BriefingSection } from '../../../model/BriefingSection';
 export abstract class BriefingListEditorComponent<TItem, TIdentifier> {
 
   constructor() {
-    this.selectedItem = null;
+    this.selectedItemId = null;
   }
 
   items = input.required<TItem[]>();
-  selectedItem: TItem | null;
-  selectedItemEvent = output<TItem>();
+  selectedItemId: TIdentifier | null;
+  selectedItemEvent = output<TIdentifier>();
 
-  buttonClicked(event:Event, section:TItem) {
-    this.selectedItem = section;
-    this.selectedItemEvent.emit(section);
+  buttonClicked(event:Event, item:TItem) {
+    this.selectedItemId = this.getIdentifier(item);
+    this.selectedItemEvent.emit(this.selectedItemId);
   };
 
   abstract getIdentifier(item: TItem | null): TIdentifier;

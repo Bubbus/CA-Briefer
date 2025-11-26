@@ -1,8 +1,8 @@
-import { ChangeDetectionStrategy, Component, input, OnChanges, SimpleChanges } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, model } from '@angular/core';
 import { BriefingEntryListEditorComponent } from "../BriefingEntryListEditor/BriefingEntryListEditor.component";
 import { BriefingEntryEditorComponent } from "../BriefingEntryEditor/BriefingEntryEditor.component";
-import { BriefingSection } from '../../../model/BriefingSection';
-import { BriefingEntry } from '../../../model/BriefingEntry';
+import { BriefingSectionService } from '../../../service/BriefingSection.service';
+import { BriefingEntryService } from '../../../service/BriefingEntry.service';
 
 @Component({
   selector: 'briefing-section-editor',
@@ -11,26 +11,25 @@ import { BriefingEntry } from '../../../model/BriefingEntry';
   imports: [BriefingEntryListEditorComponent, BriefingEntryEditorComponent],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class BriefingSectionEditorComponent implements OnChanges {
-
+export class BriefingSectionEditorComponent {
+  
   constructor() {
-    this.selectedEntry = null;
+  }
+  
+  public selectedEntryService = model<BriefingEntryService | null>(null);
+
+  private _sectionService!: BriefingSectionService;
+  @Input() public set sectionService(service: BriefingSectionService) {
+    this._sectionService = service;
+    this.selectedEntryService.set(null);
+  }
+  public get sectionService(): BriefingSectionService {
+    return this._sectionService;
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    var sectionChanges = changes['section'];
-    if (sectionChanges !== undefined
-      && !sectionChanges.firstChange
-    ) {
-      this.selectedEntry = null;
-    }
-  }
-
-  section = input.required<BriefingSection>();
-  selectedEntry: BriefingEntry | null;
-
-  entrySelected(entry: BriefingEntry) {
-    this.selectedEntry = entry;
+  entrySelected(id: number) {
+    var entryService = this.sectionService.getEntryService(id);
+    this.selectedEntryService.set(entryService);
   } 
   
 }

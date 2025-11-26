@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component } from '@angular/core';
 import { BriefingEntry } from '../../../model/BriefingEntry';
 import { BriefingListEditorComponent } from '../BriefingListEditor{TItem,TIdentifier}/BriefingListEditor.component';
 
