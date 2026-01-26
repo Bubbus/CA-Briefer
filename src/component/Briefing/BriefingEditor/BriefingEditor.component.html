@@ -4,6 +4,7 @@
       [items]="modelService.model().sections" 
       (selectedItemEvent)="sectionSelected($event)" 
       (addNewItemEvent)="addNewSection()"
+      (removeSelectedItemEvent)="removeSelectedSection()"
       class="w-60 min-w-40 m-6"/>
       
     @if (selectedSection !== null) {

@@ -4,15 +4,30 @@
 		{
 			"label": "npm: start",
 			"type": "shell",
-			"command": "echo $PATH; ng serve",
+			"detail": "ng serve",
+			"command": "ng serve",
+			"isBackground": true,
 			"options": {
 				"cwd": "/config/CA-Briefer/",
 				"env": {
 					"PATH": "/config/.nvm/versions/node/v24.11.0/bin:/config/.local/bin:/command:/lsiopy/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 				}
 			},
-			"problemMatcher": [],
-			"detail": "ng serve"
+			"problemMatcher": {
+				"pattern": [
+					{
+						"regexp": ".",
+						"file": 1,
+						"location": 1,
+						"message": 1
+					}
+				],
+				"background": {
+					"activeOnStart": true,
+					"beginsPattern": { "regexp": "."},
+					"endsPattern": { "regexp": "Application bundle generation complete" }
+				}
+			}
 		}
 	]
 }

@@ -1,7 +1,7 @@
 import { BriefingEntry } from "./BriefingEntry";
 import { BriefingSection } from "./BriefingSection";
 import { BriefingSide } from "./BriefingSide.enum";
-import { GetModelIdentitySingleton } from "./ModelIdentitySingleton";
+import { GetModelIdentitySingleton, ModelIdentitySingleton } from "./ModelIdentitySingleton";
 
 export class BriefingModel {
     
@@ -19,7 +19,7 @@ export class BriefingModel {
     side: BriefingSide;
 }
 
-export function CreateBriefingModelFixture() {
+export function CreateBriefingModelFixture(modelIds: ModelIdentitySingleton) {
     var missionEntries = [
         new BriefingEntry(1, "Situation", "its atrocious"),
         new BriefingEntry(2, "Execution", "fix it")
@@ -35,7 +35,6 @@ export function CreateBriefingModelFixture() {
         new BriefingSection(2, "Intel", intelEntries)
     ]
 
-    var modelIds = GetModelIdentitySingleton();
     modelIds.setIdForType(BriefingEntry.name, 4);
     modelIds.setIdForType(BriefingSection.name, 2);
 

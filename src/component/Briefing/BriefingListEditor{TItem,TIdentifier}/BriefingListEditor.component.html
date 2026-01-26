@@ -1,4 +1,4 @@
-<div class="bg-neutral-400 pt-6 pb-3 flex-col">
+<div class="bg-neutral-400 pt-6 flex-col">
   @for (item of items(); track getIdentifier(item)) {
     <div>
       <button 
@@ -7,7 +7,7 @@
         (click)="buttonClicked($event, item)">
         @if (getIdentifier(item) === selectedItemId) 
         {
-          <briefing-input-editor [text]="getDisplayText(item)" (onTextChanged)="displayTextEdited($event, item)" />
+          <briefing-input-editor [text]="getDisplayText(item)" (onTextChanged)="displayTextEdited($event, item)" (onload)="focusInputEditor()"/>
         }
         @else
         {
@@ -16,11 +16,18 @@
       </button>      
     </div>
   }
-  <div class="grid">
-    <button 
-      class="px-3 mt-3 mx-3 briefer-button"
-      (click)="addButtonClicked($event)">
-      <span>+</span>
-    </button>      
+  <div class="flex">
+    <div class="grid grid-cols-2">
+      <button title="Add new"
+        class="m-2 me-1 p-1 pt-0 briefer-button"
+        (click)="addButtonClicked($event)">
+        <span>➕</span>
+      </button>
+      <button title="Remove selected"
+        class="m-2 ms-1 p-1 pt-0 briefer-button"
+        (click)="removeButtonClicked($event)">
+        <span>➖</span>
+      </button>
+    </div>
   </div>
 </div>

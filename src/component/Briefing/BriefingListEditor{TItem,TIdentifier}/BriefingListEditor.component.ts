@@ -1,4 +1,4 @@
-import { Component, input, output } from '@angular/core';
+import { Component, input, output, viewChild } from '@angular/core';
 import { BriefingInputEditorComponent } from "../BriefingInputEditor/BriefingInputEditor.component";
 
 @Component({
@@ -9,6 +9,8 @@ import { BriefingInputEditorComponent } from "../BriefingInputEditor/BriefingInp
 })
 export abstract class BriefingListEditorComponent<TItem, TIdentifier> {
 
+  private _inputEditor = viewChild(BriefingInputEditorComponent);
+  
   constructor() {
     this.selectedItemId = null;
   }
@@ -17,10 +19,12 @@ export abstract class BriefingListEditorComponent<TItem, TIdentifier> {
   selectedItemId: TIdentifier | null;
   selectedItemEvent = output<TIdentifier>();
   addNewItemEvent = output();
+  removeSelectedItemEvent = output();
 
   buttonClicked(event:Event, item:TItem) {
     this.selectedItemId = this.getIdentifier(item);
     this.selectedItemEvent.emit(this.selectedItemId);
+    this.focusInputEditor();
   };
 
   abstract getIdentifier(item: TItem | null): TIdentifier;
@@ -32,4 +36,11 @@ export abstract class BriefingListEditorComponent<TItem, TIdentifier> {
     this.addNewItemEvent.emit();
   }
 
+  public removeButtonClicked($event: PointerEvent) {
+    this.removeSelectedItemEvent.emit();
+  }
+
+  public focusInputEditor() {
+    setTimeout(() => {this._inputEditor()?.focus();}, 0);    
+  }
 }

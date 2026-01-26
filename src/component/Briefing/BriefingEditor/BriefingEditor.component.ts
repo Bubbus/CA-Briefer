@@ -11,6 +11,9 @@ import { BriefingSection } from '../../../model/BriefingSection';
   imports: [BriefingSectionEditorComponent, BriefingSectionListEditorComponent]
 })
 export class BriefingEditorComponent {
+removeSelectedSection() {
+throw new Error('Method not implemented.');
+}
 
   constructor() {
     this.modelService = inject(BriefingModelService);

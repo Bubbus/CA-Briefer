@@ -13,6 +13,9 @@ import { BriefingSection } from '../../../../model/BriefingSection';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BriefingSectionEditorComponent {
+removeSelectedEntry() {
+throw new Error('Method not implemented.');
+}
 
   private _sectionService: BriefingSectionService;
   

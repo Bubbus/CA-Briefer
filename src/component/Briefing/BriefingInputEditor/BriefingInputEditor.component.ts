@@ -1,4 +1,4 @@
-import { Component, input, output } from '@angular/core';
+import { Component, contentChild, ElementRef, Input, input, output, viewChild } from '@angular/core';
 
 @Component({
   selector: 'briefing-input-editor',
@@ -9,8 +9,14 @@ export class BriefingInputEditorComponent {
 
   text = input.required<string>();
   onTextChanged = output<string>();
+  private _input = viewChild.required<ElementRef<HTMLInputElement>>('textEditor');
 
-  onChange(newText: string) {
+  public onChange(newText: string) {
     this.onTextChanged.emit(newText);
+  }
+
+  public focus() {
+    var myInput = this._input();
+    myInput.nativeElement.focus();
   }
 }

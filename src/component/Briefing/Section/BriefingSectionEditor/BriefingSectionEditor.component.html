@@ -3,6 +3,7 @@
     [items]="section.entries" 
     (selectedItemEvent)="entrySelected($event)"
     (addNewItemEvent)="addNewEntry()"
+    (removeSelectedItemEvent)="removeSelectedEntry()"
     class="w-80 min-w-50 m-6" />
 
   @if (selectedEntry() !== null) {

@@ -24,6 +24,6 @@ export class BriefingEntryListEditorComponent extends BriefingListEditorComponen
   };
   
   override displayTextEdited(newText: string, item: BriefingEntry): void {
-    throw new Error('Method not implemented.');
+    item.name = newText;
   }
 }

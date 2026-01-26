@@ -13,7 +13,7 @@ export class BriefingModelService {
   private _modelIds: ModelIdentitySingleton;
 
   constructor(modelIds: ModelIdentitySingleton) { 
-    this._model = CreateBriefingModelFixture(); 
+    this._model = CreateBriefingModelFixture(modelIds); 
     this.model = signal<BriefingModel>(this._model);
     this._modelIds = modelIds;
   }
