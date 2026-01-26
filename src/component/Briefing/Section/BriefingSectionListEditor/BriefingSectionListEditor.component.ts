@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 import { BriefingListEditorComponent } from '../../BriefingListEditor{TItem,TIdentifier}/BriefingListEditor.component';
 import { BriefingSection } from '../../../../model/BriefingSection';
+import { BriefingInputEditorComponent } from "../../BriefingInputEditor/BriefingInputEditor.component";
 
 @Component({
   selector: 'briefing-section-list-editor',
   templateUrl: '../../BriefingListEditor{TItem,TIdentifier}/BriefingListEditor.component.html',
-  styleUrls: ['./BriefingSectionListEditor.component.css']
+  styleUrls: ['./BriefingSectionListEditor.component.css'],
+  imports: [BriefingInputEditorComponent]
 })
 export class BriefingSectionListEditorComponent extends BriefingListEditorComponent<BriefingSection, number> {
 
@@ -20,5 +22,9 @@ export class BriefingSectionListEditorComponent extends BriefingListEditorCompon
   override getDisplayText(item: BriefingSection): string {
     return item.name;
   };
+
+  override displayTextEdited(newText: string, item: BriefingSection): void {
+    throw new Error('Method not implemented.');
+  }
 
 }

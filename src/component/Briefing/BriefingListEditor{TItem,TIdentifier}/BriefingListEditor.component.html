@@ -7,7 +7,7 @@
         (click)="buttonClicked($event, item)">
         @if (getIdentifier(item) === selectedItemId) 
         {
-          <briefing-input-editor [text]="getDisplayText(item)" (onTextChanged)="displayTextEdited($event)" />
+          <briefing-input-editor [text]="getDisplayText(item)" (onTextChanged)="displayTextEdited($event, item)" />
         }
         @else
         {

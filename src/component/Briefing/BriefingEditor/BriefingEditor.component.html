@@ -6,9 +6,9 @@
       (addNewItemEvent)="addNewSection()"
       class="w-60 min-w-40 m-6"/>
       
-    @if (selectedSectionService !== null) {
+    @if (selectedSection !== null) {
       <briefing-section-editor 
-        [sectionService]="selectedSectionService" 
+        [section]="selectedSection" 
         class="flex-grow"/>
     }
   </div>

@@ -1,11 +1,11 @@
 <div class="bg-neutral-500 flex">
   <briefing-entry-list-editor 
-    [items]="sectionService.section().entries" 
+    [items]="section.entries" 
     (selectedItemEvent)="entrySelected($event)"
     (addNewItemEvent)="addNewEntry()"
     class="w-80 min-w-50 m-6" />
 
-  @if (selectedEntryService() !== null) {
-    <briefing-entry-editor [entryService]="selectedEntryService()!" class="flex-grow m-6" />
+  @if (selectedEntry() !== null) {
+    <briefing-entry-editor [entry]="selectedEntry()!" class="flex-grow m-6" />
   }
 </div>

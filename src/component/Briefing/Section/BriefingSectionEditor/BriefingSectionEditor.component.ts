@@ -2,7 +2,8 @@ import { ChangeDetectionStrategy, Component, Input, model } from '@angular/core'
 import { BriefingEntryListEditorComponent } from "../../Entry/BriefingEntryListEditor/BriefingEntryListEditor.component";
 import { BriefingEntryEditorComponent } from "../../Entry/BriefingEntryEditor/BriefingEntryEditor.component";
 import { BriefingSectionService } from '../../../../service/BriefingSection.service';
-import { BriefingEntryService } from '../../../../service/BriefingEntry.service';
+import { BriefingEntry } from '../../../../model/BriefingEntry';
+import { BriefingSection } from '../../../../model/BriefingSection';
 
 @Component({
   selector: 'briefing-section-editor',
@@ -12,28 +13,31 @@ import { BriefingEntryService } from '../../../../service/BriefingEntry.service'
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BriefingSectionEditorComponent {
-  
-  constructor() {
-  }
-  
-  public selectedEntryService = model<BriefingEntryService | null>(null);
 
-  private _sectionService!: BriefingSectionService;
-  @Input() public set sectionService(service: BriefingSectionService) {
-    this._sectionService = service;
-    this.selectedEntryService.set(null);
+  private _sectionService: BriefingSectionService;
+  
+  constructor(sectionService: BriefingSectionService) {
+    this._sectionService = sectionService;
   }
-  public get sectionService(): BriefingSectionService {
-    return this._sectionService;
+  
+  public selectedEntry = model<BriefingEntry | null>(null);
+  
+  private _section!: BriefingSection;
+  @Input() public set section(service: BriefingSection) {
+    this._section = service;
+    this.selectedEntry.set(null);
+  }
+  public get section(): BriefingSection {
+    return this._section;
   }
 
   entrySelected(id: number) {
-    var entryService = this.sectionService.getEntryService(id);
-    this.selectedEntryService.set(entryService);
+    var entry = this._section.entries.find(entry => entry.id === id) ?? null;
+    this.selectedEntry.set(entry);
   } 
 
   addNewEntry() {
-    this._sectionService.addEntry();
+    this._sectionService.addEntry(this._section);
   }
   
 }
