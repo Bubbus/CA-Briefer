@@ -1,9 +1,11 @@
 import { Component, input, output } from '@angular/core';
+import { BriefingInputEditorComponent } from "../BriefingInputEditor/BriefingInputEditor.component";
 
 @Component({
   selector: 'briefing-list-editor',
   templateUrl: './BriefingListEditor.component.html',
-  styleUrls: ['./BriefingListEditor.component.css']
+  styleUrls: ['./BriefingListEditor.component.css'],
+  imports: [BriefingInputEditorComponent]
 })
 export abstract class BriefingListEditorComponent<TItem, TIdentifier> {
 
@@ -23,6 +25,8 @@ export abstract class BriefingListEditorComponent<TItem, TIdentifier> {
 
   abstract getIdentifier(item: TItem | null): TIdentifier;
   abstract getDisplayText(item: TItem): string;
+  
+  abstract displayTextEdited(newText:string, item:TItem): void;
 
   public addButtonClicked($event: PointerEvent) {
     this.addNewItemEvent.emit();

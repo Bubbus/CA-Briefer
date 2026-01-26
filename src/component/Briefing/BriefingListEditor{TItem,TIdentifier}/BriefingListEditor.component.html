@@ -5,7 +5,14 @@
         class="w-full flex px-3"
         [class.bg-neutral-300]="getIdentifier(item) === selectedItemId"
         (click)="buttonClicked($event, item)">
-        <span class="align-left">{{getDisplayText(item)}}</span>
+        @if (getIdentifier(item) === selectedItemId) 
+        {
+          <briefing-input-editor [text]="getDisplayText(item)" (onTextChanged)="displayTextEdited($event)" />
+        }
+        @else
+        {
+          <span class="align-left">{{getDisplayText(item)}}</span>
+        }
       </button>      
     </div>
   }
