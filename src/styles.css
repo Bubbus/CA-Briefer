@@ -4,10 +4,19 @@
 @layer components {
     .briefer-button {
         background-color: var(--color-neutral-400);
-        box-shadow: var(--shadow-md);
-        border-width: 1px;
-        border-color: var(--color-neutral-300);
+        box-shadow: 1px 1px 4px var(--color-neutral-700);
         justify-content: center;
+    }
+    .briefer-button-border {
+        background-color: var(--color-neutral-400);
+        box-shadow: 1px 1px 4px var(--color-neutral-500);
+        justify-content: center;
+        border-width: 1px;
+        border-color: var(--color-neutral-500);
+    }
+    .briefer-button:disabled {
+        background-color: var(--color-neutral-500);
+        border-color: var(--color-neutral-400);
     }
     .briefer-text-input {
         background-color: var(--color-neutral-200);
@@ -15,6 +24,13 @@
         border-width: 1px;
         padding-left: 4px;
         border-color: var(--color-neutral-400);
+        justify-content: center;
+    }
+    .briefer-textarea {
+        background-color: var(--color-neutral-300);
+        box-shadow: inset 1px 1px 4px var(--color-neutral-400);
+        border-width: 1px;
+        border-color: var(--color-neutral-500);
         justify-content: center;
     }
 }

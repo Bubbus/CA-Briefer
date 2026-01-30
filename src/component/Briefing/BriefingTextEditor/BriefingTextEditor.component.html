@@ -1,3 +1,8 @@
-<div class="bg-neutral-400 p-6">
-  <textarea #textEditor (change)="onChange(textEditor.value)" [value]="text()"></textarea>
+<div class="briefer-text-editor bg-neutral-400 p-6 flex">
+  <!-- Thanks to https://chriscoyier.net/2023/09/29/css-solves-auto-expanding-textareas-probably-eventually/ -->
+  <textarea #textEditor 
+    class="briefer-textarea flex-grow"
+    onInput="this.parentNode.dataset.replicatedValue = this.value"
+    (change)="onChange(textEditor.value)" 
+    [value]="text()"></textarea>
 </div>

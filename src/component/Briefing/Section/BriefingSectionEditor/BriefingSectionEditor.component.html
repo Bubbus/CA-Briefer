@@ -1,8 +1,8 @@
-<div class="bg-neutral-500 flex">
+<div class="flex">
   <briefing-entry-list-editor 
     [items]="section.entries" 
     (selectedItemEvent)="entrySelected($event)"
-    (addNewItemEvent)="addNewEntry()"
+    [addNewItemDelegate]="addNewEntryDelegate"
     (removeSelectedItemEvent)="removeSelectedEntry()"
     class="w-80 min-w-50 m-6" />
 

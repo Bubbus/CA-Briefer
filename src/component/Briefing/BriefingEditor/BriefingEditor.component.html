@@ -1,9 +1,12 @@
-<div class="h-full bg-neutral-600">
+<div>
+  <div class="p-6 pb-0">
+    <briefing-editor-header />
+  </div>
   <div class="flex">
     <briefing-section-list-editor 
       [items]="modelService.model().sections" 
       (selectedItemEvent)="sectionSelected($event)" 
-      (addNewItemEvent)="addNewSection()"
+      [addNewItemDelegate]="addNewSectionDelegate"
       (removeSelectedItemEvent)="removeSelectedSection()"
       class="w-60 min-w-40 m-6"/>
       

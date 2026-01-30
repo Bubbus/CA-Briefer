@@ -3,15 +3,16 @@ import { BriefingSectionEditorComponent } from "../Section/BriefingSectionEditor
 import { BriefingSectionListEditorComponent } from "../Section/BriefingSectionListEditor/BriefingSectionListEditor.component";
 import { BriefingModelService } from '../../../service/BriefingModel.service';
 import { BriefingSection } from '../../../model/BriefingSection';
+import { BriefingEditorHeaderComponent } from "../BriefingEditorHeader/BriefingEditorHeader.component";
 
 @Component({
   selector: 'briefing-editor',
   templateUrl: './BriefingEditor.component.html',
   styleUrls: ['./BriefingEditor.component.css'],
-  imports: [BriefingSectionEditorComponent, BriefingSectionListEditorComponent]
+  imports: [BriefingSectionEditorComponent, BriefingSectionListEditorComponent, BriefingEditorHeaderComponent]
 })
 export class BriefingEditorComponent {
-removeSelectedSection() {
+onItemsChanged() {
 throw new Error('Method not implemented.');
 }
 
@@ -30,12 +31,21 @@ throw new Error('Method not implemented.');
     this.selectedSection = this.modelService.model().sections.find(sec => sec.id === sectionId) ?? null;
   }
 
-  addNewSection() {
-    this.modelService.addSection();
+  public addNewSectionDelegate = () => {return this.addNewSection()};
+  addNewSection(): BriefingSection {
+    return this.modelService.addSection();
   }
 
   printModel() {
     console.log(this.modelService.model());
+  }
+
+  removeSelectedSection() {
+    if (this.selectedSectionId == null) {
+      return;
+    };
+
+    this.modelService.removeSection(this.selectedSectionId);
   }
 
 }

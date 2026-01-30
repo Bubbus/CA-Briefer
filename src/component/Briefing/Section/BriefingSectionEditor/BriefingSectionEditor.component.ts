@@ -13,9 +13,6 @@ import { BriefingSection } from '../../../../model/BriefingSection';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BriefingSectionEditorComponent {
-removeSelectedEntry() {
-throw new Error('Method not implemented.');
-}
 
   private _sectionService: BriefingSectionService;
   
@@ -39,8 +36,19 @@ throw new Error('Method not implemented.');
     this.selectedEntry.set(entry);
   } 
 
-  addNewEntry() {
-    this._sectionService.addEntry(this._section);
+  public addNewEntryDelegate = () => {return this.addNewEntry()};
+  addNewEntry(): BriefingEntry {
+    return this._sectionService.addEntry(this._section);
+  }
+
+  removeSelectedEntry() {
+    var entryToRemove = this.selectedEntry();
+
+    if (entryToRemove == null) {
+      return;
+    }
+
+    this._sectionService.removeEntry(this._section, entryToRemove);
   }
   
 }

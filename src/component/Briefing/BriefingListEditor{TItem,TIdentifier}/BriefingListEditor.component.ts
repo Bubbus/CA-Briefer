@@ -18,13 +18,12 @@ export abstract class BriefingListEditorComponent<TItem, TIdentifier> {
   items = input.required<TItem[]>();
   selectedItemId: TIdentifier | null;
   selectedItemEvent = output<TIdentifier>();
-  addNewItemEvent = output();
+  addNewItemDelegate = input.required<() => TItem>();
   removeSelectedItemEvent = output();
 
   buttonClicked(event:Event, item:TItem) {
-    this.selectedItemId = this.getIdentifier(item);
-    this.selectedItemEvent.emit(this.selectedItemId);
-    this.focusInputEditor();
+    var selectedId = this.getIdentifier(item);
+    this.selectItem(selectedId);
   };
 
   abstract getIdentifier(item: TItem | null): TIdentifier;
@@ -33,7 +32,9 @@ export abstract class BriefingListEditorComponent<TItem, TIdentifier> {
   abstract displayTextEdited(newText:string, item:TItem): void;
 
   public addButtonClicked($event: PointerEvent) {
-    this.addNewItemEvent.emit();
+    var newItem = this.addNewItemDelegate()();
+    var newId = this.getIdentifier(newItem);
+    this.selectItem(newId);
   }
 
   public removeButtonClicked($event: PointerEvent) {
@@ -42,5 +43,11 @@ export abstract class BriefingListEditorComponent<TItem, TIdentifier> {
 
   public focusInputEditor() {
     setTimeout(() => {this._inputEditor()?.focus();}, 0);    
+  }
+
+  public selectItem(itemId:TIdentifier) {
+    this.selectedItemId = itemId;
+    this.selectedItemEvent.emit(itemId);
+    this.focusInputEditor();
   }
 }

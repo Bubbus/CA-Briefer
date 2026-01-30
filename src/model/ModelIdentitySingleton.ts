@@ -21,11 +21,11 @@ export class ModelIdentitySingleton {
     return typeId;
   }
 
-  public setIdForType(typeName: string, newId: number): void {
+  public setIdForType(typeName: string, newId: number) {
     this.typeIdsMap.set(typeName, newId);
   }
 
-  public resetAllIds(): void {
+  public resetAllIds() {
     this.typeIdsMap = new Map<string, number>();
   }
 

@@ -18,11 +18,27 @@ export class BriefingModelService {
     this._modelIds = modelIds;
   }
     
-  addSection(section?: BriefingSection) {
+  addSection(section?: BriefingSection): BriefingSection {
     var newId = this._modelIds.getIdForType(BriefingSection.name);
     section ??= new BriefingSection(newId, "New Section");
 
     this._model.sections.push(section);
+    return section;
+  }
+
+  removeSection(selectedSectionId: number) {
+    var sectionIdx = this._model.sections.findIndex(sec => sec.id === selectedSectionId);
+
+    if (sectionIdx < 0) {
+      return;
+    }
+
+    this._model.sections.splice(sectionIdx, 1);
+  }
+
+  replaceModel(newModel: BriefingModel) {
+    this._model = newModel;
+    this.model.set(newModel);
   }
 
 }
