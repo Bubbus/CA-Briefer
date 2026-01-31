@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { BriefingModelService } from '../../../service/BriefingModel.service';
 import { BriefingModel } from '../../../model/BriefingModel';
 import { BriefingSide } from '../../../model/BriefingSide.enum';
+import { BrieferSerializationService } from '../../../service/BrieferSerialization.service';
 
 @Component({
   selector: 'briefing-editor-header',
@@ -13,10 +14,11 @@ export class BriefingEditorHeaderComponent {
 
   constructor() {
     this.modelService = inject(BriefingModelService);
+    this.serializationService = inject(BrieferSerializationService);
   }
   
   modelService: BriefingModelService;
-
+  serializationService: BrieferSerializationService;
 
   startFromScratch() {
     var emptyModel = new BriefingModel([], BriefingSide.West);

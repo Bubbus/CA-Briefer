@@ -4,9 +4,9 @@
       <div>
         <button 
           class="w-full flex px-3"
-          [class.bg-neutral-300]="getIdentifier(item) === selectedItemId"
+          [class.bg-neutral-300]="getIdentifier(item) === selectedItemId()"
           (click)="buttonClicked($event, item)">
-          @if (getIdentifier(item) === selectedItemId) 
+          @if (getIdentifier(item) === selectedItemId()) 
           {
             <briefing-input-editor [text]="getDisplayText(item)" (onTextChanged)="displayTextEdited($event, item)" (onload)="focusInputEditor()"/>
           }
@@ -26,7 +26,7 @@
         <span>➕</span>
       </button>
       <button title="Remove selected"
-        [disabled]="selectedItemId == null"
+        [disabled]="selectedItemId() == null"
         class="ms-1 p-1 pt-0 briefer-button"
         (click)="removeButtonClicked($event)">
         <span>➖</span>

@@ -1,22 +1,19 @@
-import { Component, input, output, viewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, output, signal, viewChild } from '@angular/core';
 import { BriefingInputEditorComponent } from "../BriefingInputEditor/BriefingInputEditor.component";
 
 @Component({
   selector: 'briefing-list-editor',
   templateUrl: './BriefingListEditor.component.html',
   styleUrls: ['./BriefingListEditor.component.css'],
-  imports: [BriefingInputEditorComponent]
+  imports: [BriefingInputEditorComponent],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export abstract class BriefingListEditorComponent<TItem, TIdentifier> {
 
   private _inputEditor = viewChild(BriefingInputEditorComponent);
   
-  constructor() {
-    this.selectedItemId = null;
-  }
-
   items = input.required<TItem[]>();
-  selectedItemId: TIdentifier | null;
+  selectedItemId = signal<TIdentifier | null>(null);
   selectedItemEvent = output<TIdentifier>();
   addNewItemDelegate = input.required<() => TItem>();
   removeSelectedItemEvent = output();
@@ -46,7 +43,7 @@ export abstract class BriefingListEditorComponent<TItem, TIdentifier> {
   }
 
   public selectItem(itemId:TIdentifier) {
-    this.selectedItemId = itemId;
+    this.selectedItemId.set(itemId);
     this.selectedItemEvent.emit(itemId);
     this.focusInputEditor();
   }

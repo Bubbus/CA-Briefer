@@ -4,15 +4,15 @@
   </div>
   <div class="flex">
     <briefing-section-list-editor 
-      [items]="modelService.model().sections" 
+      [items]="modelService.model().sections"
       (selectedItemEvent)="sectionSelected($event)" 
       [addNewItemDelegate]="addNewSectionDelegate"
       (removeSelectedItemEvent)="removeSelectedSection()"
       class="w-60 min-w-40 m-6"/>
       
-    @if (selectedSection !== null) {
+    @if (selectedSection() !== null) {
       <briefing-section-editor 
-        [section]="selectedSection" 
+        [section]="selectedSection()!" 
         class="flex-grow"/>
     }
   </div>

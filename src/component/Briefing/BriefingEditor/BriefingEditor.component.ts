@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, effect, EffectRef, inject, output, signal } from '@angular/core';
 import { BriefingSectionEditorComponent } from "../Section/BriefingSectionEditor/BriefingSectionEditor.component";
 import { BriefingSectionListEditorComponent } from "../Section/BriefingSectionListEditor/BriefingSectionListEditor.component";
 import { BriefingModelService } from '../../../service/BriefingModel.service';
@@ -9,26 +9,33 @@ import { BriefingEditorHeaderComponent } from "../BriefingEditorHeader/BriefingE
   selector: 'briefing-editor',
   templateUrl: './BriefingEditor.component.html',
   styleUrls: ['./BriefingEditor.component.css'],
-  imports: [BriefingSectionEditorComponent, BriefingSectionListEditorComponent, BriefingEditorHeaderComponent]
+  imports: [BriefingSectionEditorComponent, BriefingSectionListEditorComponent, BriefingEditorHeaderComponent],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BriefingEditorComponent {
-onItemsChanged() {
-throw new Error('Method not implemented.');
-}
 
   constructor() {
     this.modelService = inject(BriefingModelService);
-    this.selectedSectionId = null;
-    this.selectedSection = null;
+
+    this.itemsChangedEffect = effect(() => {
+      var selectedId = this.selectedSectionId();
+      if (selectedId == null) { return; }
+      var sections = this.modelService.model().sections;
+      
+      if (sections.find(sec => sec.id === this.selectedSectionId()) == null) {
+        this.selectedSection.set(null);
+      }
+    });
   }
   
   modelService: BriefingModelService;
-  selectedSectionId: number | null;
-  selectedSection: BriefingSection | null;
+  selectedSectionId = computed(() => this.selectedSection()?.id);
+  selectedSection = signal<BriefingSection | null>(null);
+  private itemsChangedEffect: EffectRef;
 
   sectionSelected(sectionId: number) {
-    this.selectedSectionId = sectionId;
-    this.selectedSection = this.modelService.model().sections.find(sec => sec.id === sectionId) ?? null;
+    var selectedObj = this.modelService.model().sections.find(sec => sec.id === sectionId) ?? null;
+    this.selectedSection.set(selectedObj);
   }
 
   public addNewSectionDelegate = () => {return this.addNewSection()};
@@ -41,11 +48,12 @@ throw new Error('Method not implemented.');
   }
 
   removeSelectedSection() {
-    if (this.selectedSectionId == null) {
+    var selectedId = this.selectedSectionId();
+    if (selectedId == null) {
       return;
     };
 
-    this.modelService.removeSection(this.selectedSectionId);
+    this.modelService.removeSection(selectedId);
+    this.selectedSection.set(null);
   }
-
 }

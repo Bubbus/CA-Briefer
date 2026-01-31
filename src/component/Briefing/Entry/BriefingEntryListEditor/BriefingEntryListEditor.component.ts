@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { BriefingEntry } from '../../../../model/BriefingEntry';
 import { BriefingListEditorComponent } from '../../BriefingListEditor{TItem,TIdentifier}/BriefingListEditor.component';
 import { BriefingInputEditorComponent } from "../../BriefingInputEditor/BriefingInputEditor.component";
@@ -7,7 +7,8 @@ import { BriefingInputEditorComponent } from "../../BriefingInputEditor/Briefing
   selector: 'briefing-entry-list-editor',
   templateUrl: '../../BriefingListEditor{TItem,TIdentifier}/BriefingListEditor.component.html',
   styleUrls: ['./BriefingEntryListEditor.component.css'],
-  imports: [BriefingInputEditorComponent]
+  imports: [BriefingInputEditorComponent],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BriefingEntryListEditorComponent extends BriefingListEditorComponent<BriefingEntry, number> {
   
