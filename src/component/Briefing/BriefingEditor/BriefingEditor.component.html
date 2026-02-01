@@ -1,11 +1,7 @@
 <div>
-  <div class="p-6 pb-0">
-    <briefing-editor-header />
-  </div>
   <div class="flex">
-    <briefing-section-list-editor 
+    <briefing-section-list-editor #sectionList
       [items]="modelService.model().sections"
-      (selectedItemEvent)="sectionSelected($event)" 
       [addNewItemDelegate]="addNewSectionDelegate"
       (removeSelectedItemEvent)="removeSelectedSection()"
       class="w-60 min-w-40 m-6"/>
@@ -16,5 +12,4 @@
         class="flex-grow"/>
     }
   </div>
-  <button (click)="printModel()">print model</button>
 </div>

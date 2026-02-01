@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, model } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, Input, model, viewChild } from '@angular/core';
 import { BriefingEntryListEditorComponent } from "../../Entry/BriefingEntryListEditor/BriefingEntryListEditor.component";
 import { BriefingEntryEditorComponent } from "../../Entry/BriefingEntryEditor/BriefingEntryEditor.component";
 import { BriefingSectionService } from '../../../../service/BriefingSection.service';
@@ -14,31 +14,28 @@ import { BriefingSection } from '../../../../model/BriefingSection';
 })
 export class BriefingSectionEditorComponent {
 
-  private _sectionService: BriefingSectionService;
+  selectedEntryId = computed(() => this.selectedEntry()?.id);
+  selectedEntry = computed(() => this.entryList().selectedItem());
+  
+  private entryList = viewChild.required<BriefingEntryListEditorComponent>('entryList');
+  private sectionService: BriefingSectionService;
   
   constructor(sectionService: BriefingSectionService) {
-    this._sectionService = sectionService;
+    this.sectionService = sectionService;
   }
-  
-  public selectedEntry = model<BriefingEntry | null>(null);
   
   private _section!: BriefingSection;
   @Input() public set section(service: BriefingSection) {
     this._section = service;
-    this.selectedEntry.set(null);
+    this.entryList().selectItem(null);
   }
   public get section(): BriefingSection {
     return this._section;
   }
 
-  entrySelected(id: number) {
-    var entry = this._section.entries.find(entry => entry.id === id) ?? null;
-    this.selectedEntry.set(entry);
-  } 
-
   public addNewEntryDelegate = () => {return this.addNewEntry()};
   addNewEntry(): BriefingEntry {
-    return this._sectionService.addEntry(this._section);
+    return this.sectionService.addEntry(this._section);
   }
 
   removeSelectedEntry() {
@@ -48,7 +45,7 @@ export class BriefingSectionEditorComponent {
       return;
     }
 
-    this._sectionService.removeEntry(this._section, entryToRemove);
+    this.sectionService.removeEntry(this._section, entryToRemove);
   }
   
 }

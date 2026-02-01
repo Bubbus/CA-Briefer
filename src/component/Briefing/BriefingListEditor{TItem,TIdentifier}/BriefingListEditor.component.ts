@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input, output, signal, viewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input, output, signal, viewChild } from '@angular/core';
 import { BriefingInputEditorComponent } from "../BriefingInputEditor/BriefingInputEditor.component";
 
 @Component({
@@ -13,14 +13,17 @@ export abstract class BriefingListEditorComponent<TItem, TIdentifier> {
   private _inputEditor = viewChild(BriefingInputEditorComponent);
   
   items = input.required<TItem[]>();
-  selectedItemId = signal<TIdentifier | null>(null);
-  selectedItemEvent = output<TIdentifier>();
   addNewItemDelegate = input.required<() => TItem>();
+
+  selectedItem = signal<TItem | null>(null);
+  selectedItemId = computed(() => this.getIdentifier(this.selectedItem()));
+
+  selectedItemEvent = output<TItem | null>();
   removeSelectedItemEvent = output();
 
   buttonClicked(event:Event, item:TItem) {
     var selectedId = this.getIdentifier(item);
-    this.selectItem(selectedId);
+    this.selectItem(item);
   };
 
   abstract getIdentifier(item: TItem | null): TIdentifier;
@@ -30,8 +33,7 @@ export abstract class BriefingListEditorComponent<TItem, TIdentifier> {
 
   public addButtonClicked($event: PointerEvent) {
     var newItem = this.addNewItemDelegate()();
-    var newId = this.getIdentifier(newItem);
-    this.selectItem(newId);
+    this.selectItem(newItem);
   }
 
   public removeButtonClicked($event: PointerEvent) {
@@ -42,9 +44,9 @@ export abstract class BriefingListEditorComponent<TItem, TIdentifier> {
     setTimeout(() => {this._inputEditor()?.focus();}, 0);    
   }
 
-  public selectItem(itemId:TIdentifier) {
-    this.selectedItemId.set(itemId);
-    this.selectedItemEvent.emit(itemId);
+  public selectItem(item: TItem | null) {
+    this.selectedItem.set(item);
+    this.selectedItemEvent.emit(item);
     this.focusInputEditor();
   }
 }
