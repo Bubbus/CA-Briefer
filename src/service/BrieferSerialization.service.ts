@@ -9,7 +9,7 @@ import { BriefingModel } from '../model/BriefingModel';
 export class BrieferSerializationService {
     
   serializeModel(model: BriefingModel): string {
-    return JSON.stringify(model);
+    return JSON.stringify(model, null, 4);
   }
     
   deserializeModel(briefingModel: string): BriefingModel {
@@ -19,6 +19,11 @@ export class BrieferSerializationService {
   }
 
   validateModel(parsedModel: any) {
-    throw new Error('Method not implemented.');
+    if (parsedModel.sections == null) {
+      throw new Error('BriefingModel is invalid - no sections found.');
+    }
+    if (parsedModel.side == null) {
+      throw new Error('BriefingModel is invalid - no side found.');
+    }
   }
 }

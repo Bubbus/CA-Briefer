@@ -1,29 +1,32 @@
 <div>
-  <button
-    class="briefer-button px-2 py-1 mr-2"
-    (click)="loadFromFile()">
-    <span class="mr-2">📂</span>
-    <span>Load from file...</span>
-  </button>
-
-  <button
-    class="briefer-button px-2 py-1 mr-2"
-    (click)="saveBrieferFile()">
-    <span class="mr-2">💾</span>
-    <span>Save Briefer file</span>
-  </button>
-
-  <button
-    class="briefer-button px-2 py-1 mr-2"
-    (click)="generateSqfBriefing()">
-    <span class="mr-2">📜</span>
-    <span>Generate SQF briefing</span>
-  </button>
-
-  <button
-    class="briefer-button px-2 py-1 mr-2"
-    (click)="startFromScratch()">
-    <span class="mr-2">🚽</span>
-    <span>Start from scratch</span>
-  </button>
+  <save-button-dialog #saveDialog (onSavedEvent)="saveBrieferFile($event)" />
+  <div class="flex gap-2">
+    <button
+      class="briefer-button px-2 py-1"
+      (click)="loadFromFile()">
+      <span class="mr-2">📂</span>
+      <span>Load from file...</span>
+    </button>
+  
+    <button
+      class="briefer-button px-2 py-1"
+      (click)="showSaveDialog()">
+      <span class="mr-2">💾</span>
+      <span>Save Briefer file</span>
+    </button>
+  
+    <button
+      class="briefer-button px-2 py-1"
+      (click)="generateSqfBriefing()">
+      <span class="mr-2">📜</span>
+      <span>Generate SQF briefing</span>
+    </button>
+  
+    <button
+      class="briefer-button px-2 py-1"
+      (click)="startFromScratch()">
+      <span class="mr-2">🚽</span>
+      <span>Start from scratch</span>
+    </button>
+  </div>
 </div>
