@@ -1,16 +1,19 @@
-<dialog #codeDialog class="dialog p-6 bg-neutral-200 shadow-xl rounded-sm w-1/2 h-3/4">
-  <div>
-    <p>Here's your generated briefing code.  You can copy this into a SQF file and add it to your framework.</p>
-    <p>Your briefing is marked as <span>{{sideReadable()}}</span>.  In F3-derived frameworks (like CA's CAFE), you should paste this code into the <span>{{targetFilepath()}} file.</span></p>
-  </div>
-  <div>
-    <textarea #codeArea type="text" class="briefer-textarea" [value]="codeToShow()" [contentEditable]="false"></textarea>
-  </div>
-  <div class="grid grid-cols-2 gap-3">
-    <button class="briefer-button bg-neutral-100 p-1" (click)="onCopyClicked()">
-      <span class="mr-2">📋</span>
-      <span>Copy to clipboard</span>
-    </button>
-    <button class="briefer-button bg-neutral-100" (click)="onCloseClicked()">Close</button>
+<dialog #codeDialog class="dialog p-6 bg-neutral-200 shadow-xl rounded-sm w-1/2 h-3/4 gap-4">
+  <div class="flex flex-col gap-6 h-full">
+    <div class="flex-none">
+      <p class="text-center text-lg font-bold">Here's your generated briefing code.  You can copy this into a SQF file and add it to your framework.</p>
+      <p class="text-center pt-3">Your briefing is marked as <span class="font-bold">{{sideReadable()}}</span>.</p>
+      <p class="text-center">In the CA CAFE framework, you should paste this code into the <span class="font-mono bg-neutral-300 rounded-sm">{{targetFilepath()}}</span> file.</p>
+    </div>
+    <div class="grow">
+      <textarea #codeArea type="text" class="briefer-textarea bg-neutral-100 p-4 font-mono h-full w-full" [value]="codeToShow()" readonly="true"></textarea>
+    </div>
+    <div class="grid grid-cols-2 gap-3 flex-none">
+      <button class="briefer-button bg-neutral-100 p-1" (click)="onCopyClicked()">
+        <span class="mr-2">📋</span>
+        <span>Copy to clipboard</span>
+      </button>
+      <button class="briefer-button bg-neutral-100" (click)="onCloseClicked()">Close</button>
+    </div>
   </div>
 </dialog>

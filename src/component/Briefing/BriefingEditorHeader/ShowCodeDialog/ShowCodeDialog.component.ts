@@ -29,6 +29,6 @@ export class ShowCodeDialogComponent {
   }
 
   onCopyClicked() {
-    throw new Error('not implemented yet sry');
+    navigator.clipboard.writeText(this.codeToShow());
   }
 }

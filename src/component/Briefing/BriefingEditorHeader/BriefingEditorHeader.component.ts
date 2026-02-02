@@ -1,27 +1,36 @@
-import { Component, ElementRef, inject, viewChild } from '@angular/core';
+import { Component, ElementRef, inject, signal, viewChild } from '@angular/core';
 import { BriefingModelService } from '../../../service/BriefingModel.service';
 import { BriefingModel } from '../../../model/BriefingModel';
 import { BriefingSide } from '../../../model/BriefingSide.enum';
 import { BrieferSerializationService } from '../../../service/BrieferSerialization.service';
 import { SaveButtonDialogComponent } from "./SaveButtonDialog/SaveButtonDialog.component";
+import { ShowCodeDialogComponent } from "./ShowCodeDialog/ShowCodeDialog.component";
+import { SqfBriefingService } from '../../../service/SqfBriefing.service';
 
 @Component({
   selector: 'briefing-editor-header',
   templateUrl: './BriefingEditorHeader.component.html',
   styleUrls: ['./BriefingEditorHeader.component.css'],
-  imports: [SaveButtonDialogComponent]
+  imports: [SaveButtonDialogComponent, ShowCodeDialogComponent]
 })
 export class BriefingEditorHeaderComponent {
 
   constructor() {
     this.modelService = inject(BriefingModelService);
     this.serializationService = inject(BrieferSerializationService);
+    this.sqfBriefingService = inject(SqfBriefingService);
   }
   
   modelService: BriefingModelService;
   serializationService: BrieferSerializationService;
+  sqfBriefingService: SqfBriefingService;
+
+  codeToShow = signal<string>('');
+  sideReadable = signal<string>('');
+  codeFilepath = signal<string>('');
 
   saveDialog = viewChild.required<SaveButtonDialogComponent>('saveDialog');
+  codeDialog = viewChild.required<ShowCodeDialogComponent>('codeDialog');
 
   startFromScratch() {
     var emptyModel = new BriefingModel([], BriefingSide.West);
@@ -29,7 +38,16 @@ export class BriefingEditorHeaderComponent {
   }
 
   generateSqfBriefing() {
-    throw new Error('Method not implemented.');
+    var model = this.modelService.model();
+    var side = model.side
+    var filePath = this.sqfBriefingService.getFilenameForSide(side);
+    var generatedBriefing = this.sqfBriefingService.generateSqfBriefing(model);
+
+    this.codeToShow.set(generatedBriefing);
+    this.sideReadable.set(side);
+    this.codeFilepath.set(filePath);
+
+    this.codeDialog().showDialog();
   }
 
   showSaveDialog() {

@@ -1,5 +1,6 @@
 <div>
   <save-button-dialog #saveDialog (onSavedEvent)="saveBrieferFile($event)" />
+  <show-code-dialog #codeDialog [codeToShow]="codeToShow()" [sideReadable]="sideReadable()" [targetFilepath]="codeFilepath()" />
   <div class="flex gap-2">
     <button
       class="briefer-button px-2 py-1"

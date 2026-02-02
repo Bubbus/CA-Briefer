@@ -1,6 +1,6 @@
 export enum BriefingSide {
-    West = 1,
-    East,
-    Independent,
-    Civilian
+    West = "WEST",
+    East = "EAST",
+    Independent = "INDEPENDENT",
+    Civilian = "CIVILIAN"
 }
