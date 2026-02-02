@@ -2,6 +2,7 @@ import { Injectable, signal, WritableSignal } from '@angular/core';
 import { BriefingModel, CreateBriefingModelFixture } from '../model/BriefingModel';
 import { BriefingSection } from '../model/BriefingSection';
 import { ModelIdentitySingleton } from '../model/ModelIdentitySingleton';
+import { BriefingSide } from '../model/BriefingSide.enum';
 
 @Injectable({
   providedIn: 'root'
@@ -39,6 +40,17 @@ export class BriefingModelService {
   replaceModel(newModel: BriefingModel) {
     this._model = newModel;
     this.model.set(newModel);
+  }
+
+  setSide(side: BriefingSide) {
+    var newModel = this.shallowCloneModel();
+    newModel.side = side;
+
+    this.replaceModel(newModel);
+  }
+
+  shallowCloneModel(): BriefingModel {
+    return new BriefingModel(this._model.sections, this._model.side);
   }
 
 }

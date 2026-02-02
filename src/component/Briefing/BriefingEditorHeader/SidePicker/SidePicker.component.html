@@ -1,0 +1,27 @@
+<div class="bg-neutral-500 h-full ps-2 flex">
+  <span class="pe-2 self-center">Side:</span>
+  <button
+    class="briefer-button me-1 p-[1px]"
+    [class.briefer-button-light]="side()===briefingSide.West"
+    (click)="onSideClicked(briefingSide.West)">
+    <img ngSrc="nato-light.png" width="30" height="30">
+  </button>
+  <button
+    class="briefer-button me-1 p-[1px]"
+    [class.briefer-button-light]="side()===briefingSide.East"
+    (click)="onSideClicked(briefingSide.East)">
+    <img ngSrc="csat-light.png" width="30" height="30">
+  </button>
+  <button
+    class="briefer-button me-1 p-[1px]"
+    [class.briefer-button-light]="side()===briefingSide.Independent"
+    (click)="onSideClicked(briefingSide.Independent)">
+    <img ngSrc="aaf-light.png" width="30" height="30">
+  </button>
+  <button
+    class="briefer-button me-1 p-[1px]"
+    [class.briefer-button-light]="side()===briefingSide.Civilian"
+    (click)="onSideClicked(briefingSide.Civilian)">
+    <img ngSrc="civ-light.png" width="30" height="30">
+  </button>
+</div>

@@ -6,12 +6,13 @@ import { BrieferSerializationService } from '../../../service/BrieferSerializati
 import { SaveButtonDialogComponent } from "./SaveButtonDialog/SaveButtonDialog.component";
 import { ShowCodeDialogComponent } from "./ShowCodeDialog/ShowCodeDialog.component";
 import { SqfBriefingService } from '../../../service/SqfBriefing.service';
+import { SidePickerComponent } from "./SidePicker/SidePicker.component";
 
 @Component({
   selector: 'briefing-editor-header',
   templateUrl: './BriefingEditorHeader.component.html',
   styleUrls: ['./BriefingEditorHeader.component.css'],
-  imports: [SaveButtonDialogComponent, ShowCodeDialogComponent]
+  imports: [SaveButtonDialogComponent, ShowCodeDialogComponent, SidePickerComponent]
 })
 export class BriefingEditorHeaderComponent {
 

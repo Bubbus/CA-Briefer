@@ -3,7 +3,7 @@
     [items]="section.entries" 
     [addNewItemDelegate]="addNewEntryDelegate"
     (removeSelectedItemEvent)="removeSelectedEntry()"
-    class="w-80 min-w-50 m-6" />
+    class="w-70 m-6 flex-none" />
 
   @if (selectedEntry() !== null) {
     <briefing-entry-editor [entry]="selectedEntry()!" class="flex-grow m-6" />

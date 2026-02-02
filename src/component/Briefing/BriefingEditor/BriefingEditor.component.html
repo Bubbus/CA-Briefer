@@ -4,7 +4,7 @@
       [items]="modelService.model().sections"
       [addNewItemDelegate]="addNewSectionDelegate"
       (removeSelectedItemEvent)="removeSelectedSection()"
-      class="w-60 min-w-40 m-6"/>
+      class="w-60 m-6 flex-none"/>
       
     @if (selectedSection() !== null) {
       <briefing-section-editor 

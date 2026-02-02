@@ -53,4 +53,16 @@ export class SqfBriefingService {
     return parts.join('');
   }
 
+  wrapTextWithFontExampleElement(textToWrap: string): string {
+    return `<font color="#000000" size="14" face="RobotoCondensed">${textToWrap}</font>`;
+  }
+
+  wrapTextWithMarkerExampleElement(textToWrap: string): string {
+    return `<marker name="my_marker_name">${textToWrap}</marker>`;
+  }
+
+  getImageExampleElement(): string {
+    return `<img src="picture.paa" width="350" height="64" title="Example mouse hover text" />`;
+  }
+
 }

@@ -7,12 +7,25 @@
         box-shadow: 1px 1px 4px var(--color-neutral-700);
         justify-content: center;
     }
+    .briefer-button-light {
+        background-color: var(--color-neutral-300);
+        box-shadow: 1px 1px 4px var(--color-neutral-700);
+        justify-content: center;
+    }
     .briefer-button-border {
         background-color: var(--color-neutral-400);
         box-shadow: 1px 1px 4px var(--color-neutral-500);
         justify-content: center;
         border-width: 1px;
         border-color: var(--color-neutral-500);
+    }
+    .briefer-button-border-light {
+        background-color: var(--color-neutral-300);
+        box-shadow: 1px 1px 4px var(--color-neutral-500);
+        justify-content: center;
+        border-width: 1px;
+        border-color: var(--color-neutral-500);
+        padding: 2px 4px;
     }
     .briefer-button:disabled {
         background-color: var(--color-neutral-500);
@@ -31,6 +44,18 @@
         box-shadow: inset 1px 1px 4px var(--color-neutral-400);
         border-width: 1px;
         border-color: var(--color-neutral-500);
-        justify-content: center;
+        resize: none;
     }
+
+    a {
+        color: var(--color-blue-800);
+        text-decoration: underline;
+    }
+    a:hover {
+        color: var(--color-blue-600);
+    }
+    a:visited {
+        color: var(--color-purple-600);
+    }
+
 }

@@ -1,3 +1,9 @@
 :host {
-  display: block;
+    display: block;
+}
+
+.header-link {
+    color: var(--color-neutral-100);
+    text-decoration: none;
+    
 }
