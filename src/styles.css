@@ -3,7 +3,7 @@
 
 @layer components {
     .briefer-button {
-        background-color: #0009;
+        background-color: #000A;
         color: white;
         box-shadow: 1px 1px 4px var(--color-neutral-800);
         justify-content: center;
@@ -17,10 +17,10 @@
         justify-content: center;
     }
     .briefer-button-inpanel:hover {
-        background-color: #3339;
+        background-color: #CCCC;
     }
     .briefer-button-inpanel-light {
-        background-color: #8886;
+        background-color: #FFF6;
         color: white;
         justify-content: center;
     }
@@ -42,12 +42,16 @@
         resize: none;
     }
     .briefer-tile {
-        background-color: #0009;
+        background-color: #000A;
         color: white;
     }
     .briefer-tile-light {
-        background-color: #0005;
+        background-color: #0006;
         box-shadow: 1px 1px 4px var(--color-neutral-800);
+        color: white;
+    }
+    .briefer-tile-dark {
+        background-color: #000B;
         color: white;
     }
     .briefer-tile-highlight {
@@ -57,7 +61,6 @@
 
     .font-roboto {
         font-family: "Roboto Condensed", sans-serif;
-        font-size: 14pt;
         font-optical-sizing: auto;
         font-style: normal;
         font-variation-settings: "wdth" 100;
