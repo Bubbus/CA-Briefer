@@ -1,8 +1,13 @@
-<div class="h-full bg-neutral-600">
-    <div class="p-6 pb-0">
+<div 
+    class="h-full flex flex-col bg-cover" 
+    [style]="backgroundStyle()">
+    <div class="p-6 pb-0 flex-none">
         <briefing-editor-header />
     </div>
-    <div class="min-w-320 max-w-400">
+    <div class="min-w-320 max-w-400 flex-grow">
         <briefing-editor />
+    </div>
+    <div class="flex flex-col p-6">
+        <background-picker class="flex-none self-end"/>
     </div>
 </div>
