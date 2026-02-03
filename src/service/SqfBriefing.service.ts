@@ -27,22 +27,33 @@ export class SqfBriefingService {
   generateSqfBriefing(model: BriefingModel) {
     var parts = new Array<string>();
 
-    model.sections.forEach(sec => {
+    model.sections.slice().reverse().forEach(sec => {
+      var secName = sec.name;
+
+      parts.push('\r\n');
       parts.push(`/* ---------------------------------------------------------------- */`);
       parts.push('\r\n');
       parts.push(`// Diary section: ${sec.name}`);
       parts.push('\r\n');
       parts.push('\r\n');
-      parts.push(`player createDiarySubject ["${sec.name}", "${sec.name}"];`);
+      if (sec.name.toLowerCase() === 'briefing') {
+        parts.push(`// Note: the 'Briefing' subject exists by default, named "diary".`);
+        secName = "diary";
+      }
+      else {
+        parts.push(`player createDiarySubject ["${secName}", "${secName}"];`);
+      }
       parts.push('\r\n');
       parts.push('\r\n');
 
-      sec.entries.forEach(ent => {
+      sec.entries.slice().reverse().forEach(ent => {
+        parts.push(`/* ---- Diary record: ${ent.name} ---- */`);
+        parts.push('\r\n');
         var entryText = ent.content;
-        entryText.replaceAll('"', '""');
-        entryText.replaceAll(/\r?\n"/g, '\r\n<br/>');
+        entryText = entryText.replaceAll('"', '""');
+        entryText = entryText.replaceAll(/\r?\n/g, '\r\n<br/>');
 
-        parts.push(`player createDiaryRecord ["${sec.name}", ["${ent.name}", "${entryText}"]];`);
+        parts.push(`player createDiaryRecord ["${secName}", ["${ent.name}", "${entryText}"]];`);
         parts.push('\r\n');
         parts.push('\r\n');
       });
@@ -54,7 +65,7 @@ export class SqfBriefingService {
   }
 
   wrapTextWithFontExampleElement(textToWrap: string): string {
-    return `<font color="#000000" size="14" face="RobotoCondensed">${textToWrap}</font>`;
+    return `<font color="#FFFFFF" size="14" face="RobotoCondensed">${textToWrap}</font>`;
   }
 
   wrapTextWithMarkerExampleElement(textToWrap: string): string {

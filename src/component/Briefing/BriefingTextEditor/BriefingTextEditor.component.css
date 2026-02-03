@@ -9,7 +9,6 @@
 }
 .briefer-text-editor > textarea {
     resize: none;
-    overflow: hidden;
 }
 .briefer-text-editor > textarea,
 .briefer-text-editor::after {

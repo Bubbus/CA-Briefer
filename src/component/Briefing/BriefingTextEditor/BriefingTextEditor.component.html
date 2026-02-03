@@ -1,10 +1,11 @@
-<div class="briefer-text-editor bg-neutral-400 p-6">
+<div #mainDiv class="briefer-text-editor briefer-tile p-6">
   <!-- Thanks to https://chriscoyier.net/2023/09/29/css-solves-auto-expanding-textareas-probably-eventually/ -->
   <textarea #textEditor 
     class="briefer-textarea"
-    onInput="this.parentNode.dataset.replicatedValue = this.value"
+    (input)="updateHeight()"
     (change)="onChange(textEditor.value)" 
-    [value]="text()"></textarea>
+    [value]="text()">
+    </textarea>
 
   <briefing-text-editor-controls 
     (markerClickEvent)="onMarkerClicked()"

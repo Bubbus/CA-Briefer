@@ -1,4 +1,4 @@
-import { Component, ElementRef, input, output, viewChild } from '@angular/core';
+import { Component, effect, EffectRef, ElementRef, input, OnInit, output, viewChild } from '@angular/core';
 import { BriefingTextEditorControlsComponent } from "./BriefingTextEditorControls/BriefingTextEditorControls.component";
 import { SqfBriefingService } from '../../../service/SqfBriefing.service';
 
@@ -10,17 +10,28 @@ import { SqfBriefingService } from '../../../service/SqfBriefing.service';
 })
 export class BriefingTextEditorComponent {
   
-  constructor(sqfService: SqfBriefingService) {    
-    this.sqfBriefingService = sqfService
+  constructor(sqfService: SqfBriefingService) {
+    this.sqfBriefingService = sqfService;
+
+    this.textChangedEffect = effect(() => {
+      var newText = this.text();
+
+      setTimeout(() => {
+        this.updateHeight();
+      }, 0.1);
+    })
   }
   
   text = input.required<string>();
   onTextChanged = output<string>();
   
+  private textChangedEffect: EffectRef;
+  private mainDiv = viewChild.required<ElementRef<HTMLDivElement>>('mainDiv');
   private textEditor = viewChild.required<ElementRef<HTMLTextAreaElement>>('textEditor');
   private sqfBriefingService: SqfBriefingService;
   
   onChange(newText: string) {
+    this.updateHeight();
     this.onTextChanged.emit(newText);
   }
 
@@ -62,5 +73,12 @@ export class BriefingTextEditorComponent {
     
     editor.value = newEditorText;
     this.onTextChanged.emit(newEditorText);
+  }
+
+  protected updateHeight() {
+    var editor = this.textEditor().nativeElement;
+    var editorText = editor.value;
+
+    this.mainDiv().nativeElement.dataset['replicatedValue'] = editorText;
   }
 }

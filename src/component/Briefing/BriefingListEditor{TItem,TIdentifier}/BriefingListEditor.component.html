@@ -1,10 +1,10 @@
 <div>
-  <div class="bg-neutral-400 py-6 flex-col">
+  <div class="briefer-tile py-4 flex-col">
     @for (item of items(); track getIdentifier(item)) {
-      <div>
+      <div class="h-[30px]">
         <button 
-          class="w-full flex px-3"
-          [class.bg-neutral-300]="getIdentifier(item) === selectedItemId()"
+          class="w-full ps-5"
+          [class.briefer-tile-highlight]="getIdentifier(item) === selectedItemId()"
           (click)="buttonClicked($event, item)">
           @if (getIdentifier(item) === selectedItemId()) 
           {
@@ -12,7 +12,7 @@
           }
           @else
           {
-            <span class="align-left">{{getDisplayText(item)}}</span>
+            <span class="float-left">{{getDisplayText(item)}}</span>
           }
         </button>      
       </div>
@@ -21,13 +21,13 @@
   <div class="flex">
     <div class="grid grid-cols-2 my-2">
       <button title="Add new"
-        class="me-1 p-1 pt-0 briefer-button"
+        class="me-1 p-1 pt-[2px] briefer-button text-base"
         (click)="addButtonClicked($event)">
         <span>➕</span>
       </button>
       <button title="Remove selected"
         [disabled]="selectedItemId() == null"
-        class="ms-1 p-1 pt-0 briefer-button"
+        class="ms-1 p-1 pt-[2px] briefer-button text-base"
         (click)="removeButtonClicked($event)">
         <span>➖</span>
       </button>

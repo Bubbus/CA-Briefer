@@ -1,10 +1,10 @@
 <div>
-  <div class="flex">
+  <div class="flex font-roboto">
     <briefing-section-list-editor #sectionList
       [items]="modelService.model().sections"
       [addNewItemDelegate]="addNewSectionDelegate"
       (removeSelectedItemEvent)="removeSelectedSection()"
-      class="w-60 m-6 flex-none"/>
+      class="w-60 m-6 me-0 flex-none"/>
       
     @if (selectedSection() !== null) {
       <briefing-section-editor 

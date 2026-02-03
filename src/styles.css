@@ -3,59 +3,76 @@
 
 @layer components {
     .briefer-button {
-        background-color: var(--color-neutral-400);
-        box-shadow: 1px 1px 4px var(--color-neutral-700);
+        background-color: #0009;
+        color: white;
+        box-shadow: 1px 1px 4px var(--color-neutral-800);
         justify-content: center;
     }
-    .briefer-button-light {
-        background-color: var(--color-neutral-300);
-        box-shadow: 1px 1px 4px var(--color-neutral-700);
+    .briefer-button:hover {
+        background-color: #3339;
+    }
+    .briefer-button-inpanel {
+        background-color: #0006;
+        color: white;
         justify-content: center;
     }
-    .briefer-button-border {
-        background-color: var(--color-neutral-400);
-        box-shadow: 1px 1px 4px var(--color-neutral-500);
-        justify-content: center;
-        border-width: 1px;
-        border-color: var(--color-neutral-500);
+    .briefer-button-inpanel:hover {
+        background-color: #3339;
     }
-    .briefer-button-border-light {
-        background-color: var(--color-neutral-300);
-        box-shadow: 1px 1px 4px var(--color-neutral-500);
+    .briefer-button-inpanel-light {
+        background-color: #8886;
+        color: white;
         justify-content: center;
-        border-width: 1px;
-        border-color: var(--color-neutral-500);
-        padding: 2px 4px;
     }
     .briefer-button:disabled {
         background-color: var(--color-neutral-500);
         border-color: var(--color-neutral-400);
     }
     .briefer-text-input {
-        background-color: var(--color-neutral-200);
-        box-shadow: inset 1px 1px 4px var(--color-neutral-300);
         border-width: 1px;
         padding-left: 4px;
         border-color: var(--color-neutral-400);
         justify-content: center;
     }
     .briefer-textarea {
-        background-color: var(--color-neutral-300);
-        box-shadow: inset 1px 1px 4px var(--color-neutral-400);
+        background-color: #4448;
+        box-shadow: inset 1px 1px 4px var(--color-neutral-800);
         border-width: 1px;
         border-color: var(--color-neutral-500);
         resize: none;
     }
+    .briefer-tile {
+        background-color: #0009;
+        color: white;
+    }
+    .briefer-tile-light {
+        background-color: #0005;
+        box-shadow: 1px 1px 4px var(--color-neutral-800);
+        color: white;
+    }
+    .briefer-tile-highlight {
+        background-color: #AAA8;
+        color: white;
+    }
+
+    .font-roboto {
+        font-family: "Roboto Condensed", sans-serif;
+        font-size: 14pt;
+        font-optical-sizing: auto;
+        font-style: normal;
+        font-variation-settings: "wdth" 100;
+        font-weight: 400;
+    }
 
     a {
-        color: var(--color-blue-800);
+        color: var(--color-blue-400);
         text-decoration: underline;
     }
     a:hover {
-        color: var(--color-blue-600);
+        color: var(--color-blue-200);
     }
     a:visited {
-        color: var(--color-purple-600);
+        color: var(--color-purple-400);
     }
 
 }

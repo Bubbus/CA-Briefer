@@ -1,9 +1,9 @@
-<div class="bg-neutral-500 h-full ps-2 flex">
+<div class="briefer-tile-light font-roboto h-full ps-2 flex">
   <span class="pe-2 self-center">Background:</span>
   @for (item of backgroundService.availableBackgrounds; track item.imageFilepath) {
     <button
-      class="briefer-button me-1 p-[1px]"
-      [class.briefer-button-light]="backgroundService.selectedBackground() === item"
+      class="briefer-button-inpanel me-1 p-[1px]"
+      [class.briefer-button-inpanel-light]="backgroundService.selectedBackground() === item"
       (click)="onImageClicked(item)">
       <img [ngSrc]="item.iconFilepath" width="30" height="30">
     </button>

@@ -14,7 +14,7 @@ export class BriefingModelService {
   private _modelIds: ModelIdentitySingleton;
 
   constructor(modelIds: ModelIdentitySingleton) { 
-    this._model = CreateBriefingModelFixture(modelIds); 
+    this._model = new BriefingModel([], BriefingSide.West); 
     this.model = signal<BriefingModel>(this._model);
     this._modelIds = modelIds;
   }
