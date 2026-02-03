@@ -1,7 +1,6 @@
 <div>
-  <div class="briefer-tile py-4 flex-col">
+  <div class="briefer-tile py-4 grid">
     @for (item of items(); track getIdentifier(item)) {
-      <div class="h-[30px]">
         <button 
           class="w-full ps-5"
           [class.briefer-tile-highlight]="getIdentifier(item) === selectedItemId()"
@@ -14,8 +13,7 @@
           {
             <span class="float-left">{{getDisplayText(item)}}</span>
           }
-        </button>      
-      </div>
+        </button>
     }
   </div>
   <div class="flex">
