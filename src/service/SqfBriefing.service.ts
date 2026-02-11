@@ -49,9 +49,7 @@ export class SqfBriefingService {
       sec.entries.slice().reverse().forEach(ent => {
         parts.push(`/* ---- Diary record: ${ent.name} ---- */`);
         parts.push('\r\n');
-        var entryText = ent.content;
-        entryText = entryText.replaceAll('"', '""');
-        entryText = entryText.replaceAll(/\r?\n/g, '\r\n<br/>');
+        var entryText = this.sanitizeBriefingString(ent.content);
 
         parts.push(`player createDiaryRecord ["${secName}", ["${ent.name}", "${entryText}"]];`);
         parts.push('\r\n');
@@ -62,6 +60,11 @@ export class SqfBriefingService {
     parts.push(`/* ---------------------------------------------------------------- */`);
 
     return parts.join('');
+  }
+  sanitizeBriefingString(entryText: string) {
+    entryText = entryText.replaceAll('"', '""');
+    entryText = entryText.replaceAll('&', '&amp;');
+    return entryText.replaceAll(/\r?\n/g, '\r\n<br/>');
   }
 
   wrapTextWithFontExampleElement(textToWrap: string): string {
