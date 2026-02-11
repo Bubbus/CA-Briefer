@@ -1,4 +1,4 @@
-import { Injectable, model } from "@angular/core";
+import { Injectable } from "@angular/core";
 
 @Injectable({
   providedIn: 'root'
@@ -16,8 +16,6 @@ export class ModelIdentitySingleton {
 
     this.typeIdsMap.set(typeName, typeId);
 
-    console.log(this.typeIdsMap);
-
     return typeId;
   }
 
@@ -28,7 +26,6 @@ export class ModelIdentitySingleton {
   public resetAllIds() {
     this.typeIdsMap = new Map<string, number>();
   }
-
 }
 
 export const modelIdSingleton = new ModelIdentitySingleton();

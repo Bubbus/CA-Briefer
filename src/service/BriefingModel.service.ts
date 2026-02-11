@@ -3,6 +3,7 @@ import { BriefingModel, CreateBriefingModelFixture } from '../model/BriefingMode
 import { BriefingSection } from '../model/BriefingSection';
 import { ModelIdentitySingleton } from '../model/ModelIdentitySingleton';
 import { BriefingSide } from '../model/BriefingSide.enum';
+import { BriefingEntry } from '../model/BriefingEntry';
 
 @Injectable({
   providedIn: 'root'
@@ -40,6 +41,7 @@ export class BriefingModelService {
   replaceModel(newModel: BriefingModel) {
     this._model = newModel;
     this.model.set(newModel);
+    this.configIdsUsingModel(newModel);
   }
 
   setSide(side: BriefingSide) {
@@ -51,6 +53,19 @@ export class BriefingModelService {
 
   shallowCloneModel(): BriefingModel {
     return new BriefingModel(this._model.sections, this._model.side);
+  }
+  
+  private configIdsUsingModel(newModel: BriefingModel) {
+    this._modelIds.resetAllIds();
+
+    var maxSectionId = Math.max.apply(null, newModel.sections.map(sec => sec.id));
+    this._modelIds.setIdForType(BriefingSection.name, maxSectionId);
+
+    var allEntries = new Array<BriefingEntry>();
+    newModel.sections.forEach(sec => allEntries = allEntries.concat(sec.entries));
+
+    var maxEntryId = Math.max.apply(null, allEntries.map(sec => sec.id));
+    this._modelIds.setIdForType(BriefingEntry.name, maxEntryId);
   }
 
 }
